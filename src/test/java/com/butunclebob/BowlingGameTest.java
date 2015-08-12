@@ -38,15 +38,28 @@ public class BowlingGameTest {
 
         assertThat(bowlingGame.getScore(), is(16));
     }
+    
+    @Test
+    public void shouldScoreOneStrike() {
+        rollStrike();
+        bowlingGame.roll(3);
+        bowlingGame.roll(4);
+        rollMany(16, 0);
+
+        assertThat(bowlingGame.getScore(), is(24));
+    }
 
     private void rollMany(int rolls, int pins) {
-        for (int i = 0; i < rolls; i++) {
+        for (int i = 0; i < rolls; i++)
             bowlingGame.roll(pins);
-        }
     }
 
     private void rollSpare() {
         bowlingGame.roll(5);
         bowlingGame.roll(5);
+    }
+
+    private void rollStrike() {
+        bowlingGame.roll(10);
     }
 }
